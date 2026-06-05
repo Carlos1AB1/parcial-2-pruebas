@@ -29,3 +29,17 @@ class TestBonificacion25:
     def test_monto_29999_recibe_10_porciento(self):
         resultado = calcular_recarga(29999)
         assert resultado["bonificacion"] == 0.1
+
+
+class TestPlanPremium:
+    def test_premium_con_10k_recibe_15_porciento(self):
+        resultado = calcular_recarga(10000, plan_premium=True)
+        assert resultado["bonificacion"] == 0.15
+
+    def test_premium_con_30k_recibe_30_porciento(self):
+        resultado = calcular_recarga(30000, plan_premium=True)
+        assert resultado["bonificacion"] == 0.30
+
+    def test_premium_sin_bonificacion_no_recibe_extra(self):
+        resultado = calcular_recarga(5000, plan_premium=True)
+        assert resultado["bonificacion"] == 0.0
