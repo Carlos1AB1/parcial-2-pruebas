@@ -4,6 +4,7 @@ BONUS_10_THRESHOLD = 10000
 BONUS_25_THRESHOLD = 30000
 BONUS_10_RATE = 0.10
 BONUS_25_RATE = 0.25
+PREMIUM_BONUS_RATE = 0.05
 
 
 def calcular_recarga(monto: int, plan_premium: bool = False) -> dict:
@@ -16,6 +17,9 @@ def calcular_recarga(monto: int, plan_premium: bool = False) -> dict:
         bonificacion = BONUS_10_RATE
     else:
         bonificacion = 0.0
+
+    if plan_premium and bonificacion > 0:
+        bonificacion += PREMIUM_BONUS_RATE
 
     datos_bonificacion = int(monto * bonificacion)
     return {
