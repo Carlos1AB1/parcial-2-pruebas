@@ -1,0 +1,60 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.4, pytest-9.0.3, pluggy-1.6.0 -- /Users/archu/Desktop/parcial-2-pruebas-carlos-arturo/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/archu/Desktop/parcial-2-pruebas-carlos-arturo
+plugins: locust-2.44.1, bdd-8.1.0, anyio-4.13.0
+collecting ... collected 45 items
+
+tests/test_api.py::TestHealth::test_health_returns_ok PASSED             [  2%]
+tests/test_api.py::TestCalcularRecarga::test_recarga_exitosa_sin_bonificacion PASSED [  4%]
+tests/test_api.py::TestCalcularRecarga::test_recarga_con_bonificacion_10 PASSED [  6%]
+tests/test_api.py::TestCalcularRecarga::test_recarga_con_bonificacion_25 PASSED [  8%]
+tests/test_api.py::TestCalcularRecarga::test_recarga_con_premium PASSED  [ 11%]
+tests/test_api.py::TestCalcularRecarga::test_recarga_rechazada_monto_bajo PASSED [ 13%]
+tests/test_api.py::TestCalcularRecarga::test_recarga_rechazada_monto_alto PASSED [ 15%]
+tests/test_calculadora.py::TestValidacionRango::test_rechaza_monto_menor_al_minimo PASSED [ 17%]
+tests/test_calculadora.py::TestValidacionRango::test_rechaza_monto_mayor_al_maximo PASSED [ 20%]
+tests/test_calculadora.py::TestValidacionRangoDirecta::test_validar_monto_devuelve_error_si_menor PASSED [ 22%]
+tests/test_calculadora.py::TestValidacionRangoDirecta::test_validar_monto_devuelve_error_si_mayor PASSED [ 24%]
+tests/test_calculadora.py::TestValidacionRangoDirecta::test_validar_monto_devuelve_none_si_valido PASSED [ 26%]
+tests/test_calculadora.py::TestBonificacion10::test_monto_10k_recibe_10_porciento PASSED [ 28%]
+tests/test_calculadora.py::TestBonificacion10::test_monto_9999_no_recibe_bonificacion PASSED [ 31%]
+tests/test_calculadora.py::TestBonificacion25::test_monto_30k_recibe_25_porciento PASSED [ 33%]
+tests/test_calculadora.py::TestBonificacion25::test_monto_29999_recibe_10_porciento PASSED [ 35%]
+tests/test_calculadora.py::TestCalculoTasaDirecto::test_tasa_0_si_menor_10k PASSED [ 37%]
+tests/test_calculadora.py::TestCalculoTasaDirecto::test_tasa_10_si_entre_10k_y_29999 PASSED [ 40%]
+tests/test_calculadora.py::TestCalculoTasaDirecto::test_tasa_25_si_mayor_igual_30k PASSED [ 42%]
+tests/test_calculadora.py::TestCalculoTasaDirecto::test_tasa_15_con_premium_y_10k PASSED [ 44%]
+tests/test_calculadora.py::TestCalculoTasaDirecto::test_tasa_30_con_premium_y_30k PASSED [ 46%]
+tests/test_calculadora.py::TestCalculoTasaDirecto::test_tasa_sin_cambio_si_premium_sin_bonificacion PASSED [ 48%]
+tests/test_calculadora.py::TestPlanPremium::test_premium_con_10k_recibe_15_porciento PASSED [ 51%]
+tests/test_calculadora.py::TestPlanPremium::test_premium_con_30k_recibe_30_porciento PASSED [ 53%]
+tests/test_calculadora.py::TestPlanPremium::test_premium_sin_bonificacion_no_recibe_extra PASSED [ 55%]
+tests/test_calculadora.py::TestValorFinal::test_monto_final_incluye_datos_bonificacion PASSED [ 57%]
+tests/test_calculadora.py::TestValorFinal::test_datos_bonificacion_redondea_correctamente PASSED [ 60%]
+tests/test_calculadora.py::TestValorFinal::test_monto_50000_recibe_25_porciento PASSED [ 62%]
+tests/test_calculadora.py::TestValoresLimite::test_monto_999_rechazado PASSED [ 64%]
+tests/test_calculadora.py::TestValoresLimite::test_monto_1000_aprobado PASSED [ 66%]
+tests/test_calculadora.py::TestValoresLimite::test_monto_1001_aprobado PASSED [ 68%]
+tests/test_calculadora.py::TestValoresLimite::test_monto_50000_aprobado PASSED [ 71%]
+tests/test_calculadora.py::TestValoresLimite::test_monto_50001_rechazado PASSED [ 73%]
+tests/test_calculadora.py::TestMensajeError::test_mensaje_menciona_rango_valido PASSED [ 75%]
+tests/test_recarga_bdd.py::test_recarga_basica_exitosa PASSED            [ 77%]
+tests/test_recarga_bdd.py::test_recarga_rechazada_bajo PASSED            [ 80%]
+tests/test_recarga_bdd.py::test_recarga_rechazada_alto PASSED            [ 82%]
+tests/test_recarga_bdd.py::test_recarga_bonificacion_10 PASSED           [ 84%]
+tests/test_recarga_bdd.py::test_recarga_bonificacion_25 PASSED           [ 86%]
+tests/test_recarga_bdd.py::test_recarga_premium PASSED                   [ 88%]
+tests/test_recarga_bdd.py::test_recarga_outline[1000-no tiene-aprobado-0%] PASSED [ 91%]
+tests/test_recarga_bdd.py::test_recarga_outline[999-no tiene-rechazado-N/A] PASSED [ 93%]
+tests/test_recarga_bdd.py::test_recarga_outline[50000-no tiene-aprobado-25%] PASSED [ 95%]
+tests/test_recarga_bdd.py::test_recarga_outline[50001-no tiene-rechazado-N/A] PASSED [ 97%]
+tests/test_recarga_bdd.py::test_recarga_outline[30000-tiene-aprobado-30%] PASSED [100%]
+
+=============================== warnings summary ===============================
+venv/lib/python3.14/site-packages/fastapi/testclient.py:1
+  /Users/archu/Desktop/parcial-2-pruebas-carlos-arturo/venv/lib/python3.14/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 45 passed, 1 warning in 0.19s =========================

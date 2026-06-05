@@ -1,0 +1,8 @@
+Name                 Stmts   Miss  Cover   Missing
+--------------------------------------------------
+app/__init__.py          0      0   100%
+app/calculadora.py      27      0   100%
+app/main.py             13      0   100%
+app/schemas.py          10      0   100%
+--------------------------------------------------
+TOTAL                   50      0   100%

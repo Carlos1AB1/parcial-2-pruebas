@@ -1,0 +1,17 @@
+* 3133580 feat: agregar tests de borde, script de verificacion P95 y cobertura en CI
+* 6d22165 feat: agregar script Locust, CI pipeline y README
+* 9ee42ab feat: agregar API REST con FastAPI y tests de integracion
+* 6237345 feat: agregar escenarios BDD en Gherkin con pytest-bdd
+* aec61dd ♻️ REFACTOR: extraer _validar_monto y _calcular_tasa_bonificacion
+* a257166 🟢 GREEN: implementar bonificacion adicional para plan premium
+* 9a4fa6a 🔴 RED: test de bonificacion adicional para plan premium
+* d4b1d2a ♻️ REFACTOR: extraer constantes BONUS_25_THRESHOLD y BONUS_25_RATE
+* d8d2629 🟢 GREEN: implementar regla de bonificacion 25% con prioridad
+* 1f0beff 🔴 RED: test de bonificacion del 25% para montos >= $30.000
+* e6563db ♻️ REFACTOR: extraer constantes BONUS_10_THRESHOLD y BONUS_10_RATE
+* c03ba63 🟢 GREEN: implementar regla de bonificacion 10%
+* 5433ddd 🔴 RED: test de bonificacion del 10% para montos >= $10.000
+* 7a1c1fc ♻️ REFACTOR: extraer constantes MIN_MONTO y MAX_MONTO
+* 21c5851 🟢 GREEN: implementar validacion de rango [1000, 50000]
+* fceb265 🔴 RED: test de rechazo para montos fuera de rango [0-1000) U (50000-inf)
+* dc98d8e chore: estructura inicial del proyecto
