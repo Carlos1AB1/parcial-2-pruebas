@@ -6,3 +6,6 @@ dist/
 build/
 .locust*
 *.csv
+.coverage
+htmlcov/
+.pytest_cache/

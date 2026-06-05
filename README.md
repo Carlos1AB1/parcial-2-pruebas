@@ -88,15 +88,38 @@ pytest -v
 uvicorn app.main:app --reload
 ```
 
-### Prueba de carga con Locust
+### Prueba de carga con Locust (P95 < 300ms)
 
 ```bash
+# Script automatizado (inicia servidor, ejecuta locust, verifica P95, limpia)
+bash run_perf_test.sh
+
+# O manual:
 # Terminal 1: Iniciar servidor
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 
-# Terminal 2: Ejecutar Locust
+# Terminal 2: Ejecutar Locust (30 usuarios simultáneos)
 locust --headless --users 30 --spawn-rate 5 --run-time 30s \
   --host http://localhost:8000 --csv=locust_report
+
+# Verificar P95 en el CSV generado
+python3 -c "
+import csv
+with open('locust_report_stats.csv') as f:
+    for row in csv.DictReader(f):
+        if row['Name'].strip() == 'Aggregated':
+            p95 = float(row['95%'].strip())
+            assert p95 < 300, f'P95 {p95}ms >= 300ms'
+            print(f'OK: P95={p95}ms < 300ms')
+"
+```
+
+### Cobertura de código
+
+```bash
+pip install coverage
+coverage run -m pytest
+coverage report -m --include="app/*"
 ```
 
 ## API Endpoints

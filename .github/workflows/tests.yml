@@ -19,11 +19,20 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run unit tests
-      run: python -m pytest tests/test_calculadora.py -v
+    - name: Run all tests with coverage
+      run: |
+        pip install coverage
+        coverage run -m pytest -v
+        coverage report -m --include="app/*"
+        coverage html --include="app/*"
 
-    - name: Run BDD tests
-      run: python -m pytest tests/test_recarga_bdd.py -v
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-html
+        path: htmlcov/
 
-    - name: Run API integration tests
-      run: python -m pytest tests/test_api.py -v
+    - name: Performance test with Locust
+      run: |
+        chmod +x run_perf_test.sh
+        bash run_perf_test.sh
