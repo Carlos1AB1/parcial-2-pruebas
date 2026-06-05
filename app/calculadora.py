@@ -7,20 +7,32 @@ BONUS_25_RATE = 0.25
 PREMIUM_BONUS_RATE = 0.05
 
 
-def calcular_recarga(monto: int, plan_premium: bool = False) -> dict:
+def _validar_monto(monto: int) -> str | None:
     if monto < MIN_MONTO or monto > MAX_MONTO:
-        return {"estado": "rechazado", "mensaje": f"El monto debe estar entre ${MIN_MONTO:,} y ${MAX_MONTO:,}"}
+        return f"El monto debe estar entre ${MIN_MONTO:,} y ${MAX_MONTO:,}"
+    return None
 
+
+def _calcular_tasa_bonificacion(monto: int, plan_premium: bool) -> float:
     if monto >= BONUS_25_THRESHOLD:
-        bonificacion = BONUS_25_RATE
+        tasa = BONUS_25_RATE
     elif monto >= BONUS_10_THRESHOLD:
-        bonificacion = BONUS_10_RATE
+        tasa = BONUS_10_RATE
     else:
-        bonificacion = 0.0
+        tasa = 0.0
 
-    if plan_premium and bonificacion > 0:
-        bonificacion += PREMIUM_BONUS_RATE
+    if plan_premium and tasa > 0:
+        tasa += PREMIUM_BONUS_RATE
 
+    return tasa
+
+
+def calcular_recarga(monto: int, plan_premium: bool = False) -> dict:
+    error = _validar_monto(monto)
+    if error:
+        return {"estado": "rechazado", "mensaje": error}
+
+    bonificacion = _calcular_tasa_bonificacion(monto, plan_premium)
     datos_bonificacion = int(monto * bonificacion)
     return {
         "estado": "aprobado",
