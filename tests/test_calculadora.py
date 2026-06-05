@@ -19,3 +19,13 @@ class TestBonificacion10:
     def test_monto_9999_no_recibe_bonificacion(self):
         resultado = calcular_recarga(9999)
         assert resultado["bonificacion"] == 0.0
+
+
+class TestBonificacion25:
+    def test_monto_30k_recibe_25_porciento(self):
+        resultado = calcular_recarga(30000)
+        assert resultado["bonificacion"] == 0.25
+
+    def test_monto_29999_recibe_10_porciento(self):
+        resultado = calcular_recarga(29999)
+        assert resultado["bonificacion"] == 0.1
