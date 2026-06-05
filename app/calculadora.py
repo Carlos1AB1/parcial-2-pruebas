@@ -8,7 +8,9 @@ def calcular_recarga(monto: int, plan_premium: bool = False) -> dict:
     if monto < MIN_MONTO or monto > MAX_MONTO:
         return {"estado": "rechazado", "mensaje": f"El monto debe estar entre ${MIN_MONTO:,} y ${MAX_MONTO:,}"}
 
-    if monto >= BONUS_10_THRESHOLD:
+    if monto >= 30000:
+        bonificacion = 0.25
+    elif monto >= BONUS_10_THRESHOLD:
         bonificacion = BONUS_10_RATE
     else:
         bonificacion = 0.0
